@@ -18,7 +18,7 @@
           <h3 style="color: #2c5aa0; margin-bottom: 20px;">新闻资讯 <span style="float: right; font-size: 14px;">更多</span></h3>
           <div class="news-item" v-for="(news, index) in newsList" :key="index">
             <div class="news-date">{{ news.date }}</div>
-            <div>{{ news.title }}</div>
+            <a :href="news.url" target="_blank">{{ news.title }}</a>
           </div>
         </div>
       </div>
@@ -28,9 +28,6 @@
 
 <script>
 export default {
-  props: {
-    newsList: Array
-  },
   data() {
     return {
       carouselImages: [
@@ -39,8 +36,24 @@ export default {
         { url: 'https://picsum.photos/seed/freeport3/800/400', caption: '自贸试验区3' },
         { url: 'https://picsum.photos/seed/freeport4/800/400', caption: '自贸试验区4' },
         { url: 'https://picsum.photos/seed/freeport5/800/400', caption: '自贸试验区5' }
-      ]
+      ],
+      newsList: []
     };
+  },
+  mounted() {
+    fetch('https://v.api.aa1.cn/api/zhihu-news/')
+      .then(response => response.json())
+      .then(data => {
+        const formattedDate = data.date.replace(/(\\d{4})(\\d{2})(\\d{2})/, '$1-$2-$3');
+        this.newsList = data.news.map(item => ({
+          title: item.title,
+          url: item.url,
+          date: formattedDate
+        }));
+      })
+      .catch(error => {
+        console.error('Error fetching news:', error);
+      });
   }
 };
 </script>
