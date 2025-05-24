@@ -3,9 +3,15 @@
     <div class="container">
       <div class="news-grid">
         <div class="news-highlight">
-          <div class="news-highlight-content">
-            <h3 style="font-size: 20px; margin-bottom: 10px;">走进"自贸试验港"</h3>
-            <p>探索自由贸易区的发展机遇与未来规划</p>
+          <div class="carousel-container">
+            <div 
+              v-for="(image, index) in carouselImages" 
+              :key="index" 
+              class="carousel-item"
+              :style="{ backgroundImage: 'url(' + image.url + ')' }"
+            >
+              <div class="carousel-caption">{{ image.caption }}</div>
+            </div>
           </div>
         </div>
         <div class="news-list">
@@ -24,11 +30,61 @@
 export default {
   props: {
     newsList: Array
+  },
+  data() {
+    return {
+      carouselImages: [
+        { url: 'https://picsum.photos/seed/freeport1/800/400', caption: '自贸试验区1' },
+        { url: 'https://picsum.photos/seed/freeport2/800/400', caption: '自贸试验区2' },
+        { url: 'https://picsum.photos/seed/freeport3/800/400', caption: '自贸试验区3' },
+        { url: 'https://picsum.photos/seed/freeport4/800/400', caption: '自贸试验区4' },
+        { url: 'https://picsum.photos/seed/freeport5/800/400', caption: '自贸试验区5' }
+      ]
+    };
   }
 };
 </script>
 
 <style scoped>
+.carousel-container {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.carousel-item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-item:nth-child(1) { animation: fade 15s infinite; }
+.carousel-item:nth-child(2) { animation: fade 15s 3s infinite; }
+.carousel-item:nth-child(3) { animation: fade 15s 6s infinite; }
+.carousel-item:nth-child(4) { animation: fade 15s 9s infinite; }
+.carousel-item:nth-child(5) { animation: fade 15s 12s infinite; }
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+@keyframes fade {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  40% { opacity: 1; }
+  60% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
 /* News Section Styles */
 .news-section {
   padding: 60px 0;
