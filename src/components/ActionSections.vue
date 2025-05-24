@@ -37,6 +37,8 @@ export default {
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s;
+  background-size: cover;
+  background-position: center;
 }
 
 .action-card:hover {
@@ -44,15 +46,15 @@ export default {
 }
 
 .action-card.blue {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background-image: linear-gradient(135deg, rgba(102, 126, 234, 0.7), rgba(118, 75, 162, 0.7)), url('https://picsum.photos/seed/port/800/600');
 }
 
 .action-card.green {
-  background: linear-gradient(135deg, #56ab2f, #a8e6cf);
+  background-image: linear-gradient(135deg, rgba(86, 171, 47, 0.7), rgba(168, 230, 207, 0.7)), url('https://picsum.photos/seed/law/800/600');
 }
 
 .action-card.orange {
-  background: linear-gradient(135deg, #f093fb, #f5576c);
+  background-image: linear-gradient(135deg, rgba(240, 147, 251, 0.7), rgba(245, 87, 108, 0.7)), url('https://picsum.photos/seed/contact/800/600');
 }
 
 .action-title {

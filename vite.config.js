@@ -11,6 +11,6 @@ export default defineConfig({
       overlay: false
     }
   },
-  // 明确指定项目根目录为 src
-  root: './index.html'
+  // 修复项目根目录配置
+  root: './src'
 });
