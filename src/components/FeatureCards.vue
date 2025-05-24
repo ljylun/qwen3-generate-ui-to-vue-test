@@ -9,7 +9,10 @@
           :key="index" 
           @click="viewFeature(feature)"
         >
-          <div class="feature-image" :class="feature.imageClass"></div>
+          <div 
+            class="feature-image"
+            :style="{ backgroundImage: 'url(' + (feature.imageUrl || '/default-image.jpg') + ')' }"
+          ></div>
           <div class="feature-content">
             <h3 class="feature-title">{{ feature.title }}</h3>
             <p>{{ feature.description }}</p>
@@ -80,18 +83,8 @@ export default {
   height: 200px;
   background: linear-gradient(45deg, #667eea, #764ba2);
   position: relative;
-}
-
-.feature-image.city1 {
-  background: linear-gradient(45deg, #2E8B57, #98FB98);
-}
-
-.feature-image.city2 {
-  background: linear-gradient(45deg, #CD853F, #F4A460);
-}
-
-.feature-image.city3 {
-  background: linear-gradient(45deg, #4682B4, #87CEEB);
+  background-size: cover;
+  background-position: center;
 }
 
 .feature-content {

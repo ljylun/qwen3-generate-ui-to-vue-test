@@ -18,8 +18,24 @@
     />
     <HeroSection />
     <FeatureCards
-      :features="features"
-      :view-feature="viewFeature"
+      :features="[
+        {
+          title: '智能科技',
+          description: '前沿人工智能解决方案',
+          imageUrl: 'https://picsum.photos/seed/tech/600/400'
+        },
+        {
+          title: '绿色能源',
+          description: '可再生能源创新技术',
+          imageUrl: 'https://picsum.photos/seed/green/600/400'
+        },
+        {
+          title: '智慧城市',
+          description: '城市数字化转型方案',
+          imageUrl: 'https://picsum.photos/seed/city/600/400'
+        },
+      ]"
+      @view-feature="handleViewFeature"
     />
     <NewsSection
       :news-list="newsList"
@@ -109,7 +125,7 @@ export default {
       this.activeSection = section;
       // 这里可以添加页面导航逻辑
     },
-    viewFeature(feature) {
+    handleViewFeature(feature) {
       alert(`查看 ${feature.title}`);
       // 这里可以添加跳转到详情页的逻辑
     }
