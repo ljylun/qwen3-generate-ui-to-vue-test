@@ -10,11 +10,16 @@
 
 <script>
 export default {
+  data() {
+    return {
+      observer: null
+    };
+  },
   mounted() {
     // 添加滚动动画效果
     const observeElements = () => {
       const elements = document.querySelectorAll('.fade-in-up');
-      const observer = new IntersectionObserver((entries) => {
+      this.observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.style.animationDelay = Math.random() * 0.3 + 's';
@@ -24,11 +29,16 @@ export default {
       });
       
       elements.forEach(element => {
-        observer.observe(element);
+        this.observer.observe(element);
       });
     };
     
     setTimeout(observeElements, 100);
+  },
+  beforeUnmount() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   }
 };
 </script>
